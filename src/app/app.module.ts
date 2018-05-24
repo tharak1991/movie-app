@@ -10,6 +10,8 @@ import { MoviesService } from './services/movies.service';
 import { RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { JsonpModule, HttpModule } from '@angular/http';
+import { Ng2SearchPipeModule } from 'ng2-search-filter'
+import { CommonLayoutModule } from './common-layout/common-layout.module';
 
 @NgModule({
   declarations: [
@@ -24,7 +26,10 @@ import { JsonpModule, HttpModule } from '@angular/http';
     JsonpModule,
     FormsModule,
     RouterModule,
-    appRoute],
+    appRoute,
+    Ng2SearchPipeModule,
+    CommonLayoutModule
+  ],
   providers: [MoviesService],
   bootstrap: [AppComponent]
 })

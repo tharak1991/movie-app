@@ -14,4 +14,5 @@ import { Http, Headers } from '@angular/http';
 })
 export class AppComponent {
   title = 'app';
+  items = [{ name: "archie" }, { name: "jake" }, { name: "richard" }];
 }

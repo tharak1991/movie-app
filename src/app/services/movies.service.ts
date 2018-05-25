@@ -19,7 +19,7 @@ export class MoviesService {
    }
 
    searchMovies(searchStr: string) {
-     return this._jsonp.get('' + this.apiKey)
+     return this._jsonp.get('http://www.omdbapi.com/?apikey=' + this.apiKey + '&s=' + searchStr)
      .pipe(map(res => res.json()));
    }
 

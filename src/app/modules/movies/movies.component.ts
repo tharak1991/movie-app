@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { MoviesService } from '../../services/movies.service';
 import { FormsModule } from '@angular/forms';
 import { NgModule } from '@angular/core';
+import { MoviesSeachModel } from '../../data-models/movie-search.model';
 
 @Component({
   selector: 'app-movies',
@@ -11,26 +12,28 @@ import { NgModule } from '@angular/core';
 
 
 export class MoviesComponent implements OnInit {
-   popularList: Array<Object>;
-    searchStr: string;
-    searchRes: Array<Object>;
-    private movies ;
+
+    private searchStr: string;
+    private searchResponse: MoviesSeachModel;
+    private isLoading: boolean ;
+
 
     constructor(private _movieService: MoviesService) {
         // this._movieService.getPopular().subscribe(res => {
         //     this.popularList = res.results;
         // });
-        this.searchMovies();
-
     }
 
     ngOnInit() {
+        this.isLoading = true ;
+        this.searchMovies();
     }
 
     searchMovies() {
         this._movieService.searchMovies(this.searchStr).
         subscribe(res => {
-            this.movies = res;
+            this.searchResponse = res;
+            this.isLoading = false ;
             },
             err => console.error(err),
             () => console.log('done loading movies')

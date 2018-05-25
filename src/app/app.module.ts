@@ -6,6 +6,7 @@ import { Ng2SearchPipeModule } from 'ng2-search-filter';
 import { RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { JsonpModule } from '@angular/http';
+import {MatButtonModule} from '@angular/material/button';
 
 import { AppComponent } from './app.component';
 import { appRoute } from './app.routes';
@@ -14,13 +15,15 @@ import { MoviesComponent } from './modules/movies/movies.component';
 import { MovieComponent } from './modules/movie/movie.component';
 import { MoviesService } from './services/movies.service';
 import { CommonLayoutModule } from './common-layout/common-layout.module';
+import { MovieSearchComponent } from './modules/movie-search/movie-search.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     MoviesComponent,
     AboutComponent,
-    MovieComponent
+    MovieComponent,
+    MovieSearchComponent
   ],
   imports: [
     BrowserModule,

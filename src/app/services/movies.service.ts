@@ -4,6 +4,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 import { BehaviorSubject, Subject, Observable, of } from 'rxjs';
 import { map, switchMap, catchError, mergeMap } from 'rxjs/operators';
+import { MoviesSeachModel } from '../data-models/movie-search.model';
 
 
 const httpOptions = {
@@ -13,7 +14,8 @@ const httpOptions = {
 
 @Injectable()
 export class MoviesService {
-  apiKey: string;
+  private apiKey: string;
+  private movieSearchResponse: MoviesSeachModel;
 
   constructor(private _jsonp: Jsonp, private http:HttpClient) {
     this.apiKey = '42e7c341';
@@ -25,8 +27,8 @@ export class MoviesService {
    }
 
    searchMovies(searchStr: string) {
-     return this.http.get('http://www.omdbapi.com/?apikey=' + this.apiKey + '&s=dark knight' )
-     .pipe(map(res => res));
+     return this._jsonp.get('http://www.omdbapi.com/?apikey=' + this.apiKey + '&s=dark knight' )
+     .pipe(map(res => res.json()));
    }
 
    getMovie(id: string) {

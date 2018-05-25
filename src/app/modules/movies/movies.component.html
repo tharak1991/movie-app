@@ -1,8 +1,9 @@
 <p>movies</p>
+<div *ngIf="isLoading">
 <mat-card class="movie-card">
     <mat-card-header>
       <div mat-card-avatar class="movie-header-image"></div>
-      <mat-card-title>Shiba Inu</mat-card-title>
+      <mat-card-title>{{searchResponse.Search.Title}}</mat-card-title>
       <mat-card-subtitle>Dog Breed</mat-card-subtitle>
     </mat-card-header>
     <img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu">
@@ -17,4 +18,5 @@
       <button mat-button>LIKE</button>
       <button mat-button>SHARE</button>
     </mat-card-actions>
-  </mat-card>
+</mat-card>
+</div>

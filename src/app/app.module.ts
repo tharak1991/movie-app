@@ -1,5 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { HttpClientModule } from '@angular/common/http';
 
 import { AppComponent } from './app.component';
 import { appRoute } from './app.routes';
@@ -9,7 +10,7 @@ import { MovieComponent } from './modules/movie/movie.component';
 import { MoviesService } from './services/movies.service';
 import { RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
-import { JsonpModule, HttpModule } from '@angular/http';
+import { JsonpModule } from '@angular/http';
 import { Ng2SearchPipeModule } from 'ng2-search-filter'
 import { CommonLayoutModule } from './common-layout/common-layout.module';
 
@@ -22,7 +23,7 @@ import { CommonLayoutModule } from './common-layout/common-layout.module';
   ],
   imports: [
     BrowserModule,
-    HttpModule,
+    HttpClientModule,
     JsonpModule,
     FormsModule,
     RouterModule,

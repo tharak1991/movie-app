@@ -14,21 +14,24 @@ export class MoviesComponent implements OnInit {
    popularList: Array<Object>;
     searchStr: string;
     searchRes: Array<Object>;
+    private movies ;
 
     constructor(private _movieService: MoviesService) {
-        this._movieService.getPopular().subscribe(res => {
-            this.popularList = res.results;
-        });
+        // this._movieService.getPopular().subscribe(res => {
+        //     this.popularList = res.results;
+        // });
 
+    }
+
+    ngOnInit() {
     }
 
     searchMovies() {
         this._movieService.searchMovies(this.searchStr).subscribe(res => {
-            this.searchRes = res.results;
-        });
-    }
-
-  ngOnInit() {
-  }
-
+            this.movies = res; },
+            err => console.error(err),
+            () => console.log('done loading movies')
+                                      );
+        }
 }
+

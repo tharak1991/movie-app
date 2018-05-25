@@ -25,7 +25,7 @@ export class MoviesService {
    }
 
    searchMovies(searchStr: string) {
-     return this.http.get('http://www.omdbapi.com/?apikey=' + this.apiKey + '&s=' + searchStr)
+     return this.http.get('http://www.omdbapi.com/?apikey=' + this.apiKey + '&s=dark knight' )
      .pipe(map(res => res));
    }
 

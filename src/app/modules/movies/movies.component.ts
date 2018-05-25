@@ -20,6 +20,7 @@ export class MoviesComponent implements OnInit {
         // this._movieService.getPopular().subscribe(res => {
         //     this.popularList = res.results;
         // });
+        this.searchMovies();
 
     }
 
@@ -27,8 +28,10 @@ export class MoviesComponent implements OnInit {
     }
 
     searchMovies() {
-        this._movieService.searchMovies(this.searchStr).subscribe(res => {
-            this.movies = res; },
+        this._movieService.searchMovies(this.searchStr).
+        subscribe(res => {
+            this.movies = res;
+            },
             err => console.error(err),
             () => console.log('done loading movies')
                                       );

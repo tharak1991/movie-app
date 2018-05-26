@@ -1,12 +1,15 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpClientModule, HttpClient } from '@angular/common/http';
-import {MatCardModule} from '@angular/material/card';
+// import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
 import { RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { JsonpModule } from '@angular/http';
-import {MatButtonModule} from '@angular/material/button';
+import {MatButtonModule, MatProgressSpinnerModule,
+MatCardModule} from '@angular/material';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+
 
 import { AppComponent } from './app.component';
 import { appRoute } from './app.routes';
@@ -36,10 +39,16 @@ import { MessageService } from './services/message.service';
     appRoute,
     Ng2SearchPipeModule,
     CommonLayoutModule,
-    MatCardModule
+    MatCardModule,
+    MatProgressSpinnerModule,
+    BrowserAnimationsModule
+
   ],
   exports: [
-    MatCardModule
+    MatCardModule,
+    MatProgressSpinnerModule,
+    BrowserAnimationsModule
+
   ],
   providers: [MoviesService,
   HttpErrorHandler,

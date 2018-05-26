@@ -14,7 +14,7 @@ import { MoviesSeachModel } from '../../data-models/movie-search.model';
 export class MoviesComponent implements OnInit {
 
     private searchStr: string;
-    private searchResponse: MoviesSeachModel;
+    private moviesResponse: MoviesSeachModel[];
     private isLoading: boolean ;
 
 
@@ -30,14 +30,13 @@ export class MoviesComponent implements OnInit {
     }
 
     searchMovies() {
-        this._movieService.searchMovies(this.searchStr).
+        this._movieService.getSearchedMovies(this.searchStr).
         subscribe(res => {
-            this.searchResponse = res;
+            this.moviesResponse = res;
             this.isLoading = false ;
             },
             err => console.error(err),
-            () => console.log('done loading movies')
-                                      );
+            () => console.log('done loading movies')                                      );
         }
 }
 

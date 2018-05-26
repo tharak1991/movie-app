@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HttpClient } from '@angular/common/http';
 import {MatCardModule} from '@angular/material/card';
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
 import { RouterModule } from '@angular/router';
@@ -16,6 +16,8 @@ import { MovieComponent } from './modules/movie/movie.component';
 import { MoviesService } from './services/movies.service';
 import { CommonLayoutModule } from './common-layout/common-layout.module';
 import { MovieSearchComponent } from './modules/movie-search/movie-search.component';
+import { HttpErrorHandler } from './services/http-error-handler.service';
+import { MessageService } from './services/message.service';
 
 @NgModule({
   declarations: [
@@ -36,10 +38,12 @@ import { MovieSearchComponent } from './modules/movie-search/movie-search.compon
     CommonLayoutModule,
     MatCardModule
   ],
-  exports:[
+  exports: [
     MatCardModule
   ],
-  providers: [MoviesService],
+  providers: [MoviesService,
+  HttpErrorHandler,
+  MessageService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -1,39 +1,36 @@
-import { Injectable } from '@angular/core';
-import { Jsonp, Http } from '@angular/http';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
-
+import { Injectable, OnInit } from '@angular/core';
+import { HttpClientModule, HttpClient } from '@angular/common/http';
 import { BehaviorSubject, Subject, Observable, of } from 'rxjs';
 import { map, switchMap, catchError, mergeMap } from 'rxjs/operators';
 import { MoviesSeachModel } from '../data-models/movie-search.model';
-
-
-const httpOptions = {
-  headers: new HttpHeaders({ 'Content-Type': 'application/json' })
-};
+import { environment } from './../../environments/environment';
+import { HttpErrorHandler, HandleError } from './http-error-handler.service';
 
 
 @Injectable()
-export class MoviesService {
+export class MoviesService implements OnInit {
+
   private apiKey: string;
   private movieSearchResponse: MoviesSeachModel;
+  private apiUrl: string;
+  private handleError: HandleError;
 
-  constructor(private _jsonp: Jsonp, private http:HttpClient) {
-    this.apiKey = '42e7c341';
+  constructor(private _httpClient: HttpClient, httpErrorHandler: HttpErrorHandler
+  ) {
+    this.handleError = httpErrorHandler.createHandleError('HeroesService');
+    this.apiUrl = environment.api_url;
+    this.apiKey = environment.apiKey;
    }
 
-   getPopular() {
-     return this.http.get('')
-      .pipe(map(res => res));
+  ngOnInit() {
+
    }
 
-   searchMovies(searchStr: string) {
-     return this._jsonp.get('http://www.omdbapi.com/?apikey=' + this.apiKey + '&s=dark knight' )
-     .pipe(map(res => res.json()));
-   }
-
-   getMovie(id: string) {
-       return this._jsonp.get('' + id + '?callback=JSONP_CALLBACK&api_key=' + this.apiKey)
-       .pipe(map(res => res.json()));
-   }
+  public getSearchedMovies = (searchString: string): Observable<MoviesSeachModel[]> => {
+    return this._httpClient.get<MoviesSeachModel[]>( this.apiUrl + 'apikey=' + this.apiKey + '&s=' + 'dark knight')
+    .pipe(
+      catchError(this.handleError('getSearchedMovies', []))
+    );
+  }
 
 }

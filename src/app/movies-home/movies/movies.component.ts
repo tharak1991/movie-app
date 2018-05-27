@@ -38,7 +38,8 @@ export class MoviesComponent implements OnInit {
             err => console.error(err),
             () => {
                 console.log('done loading movies') ;
-                console.log(this.moviesResponse) ;                                );
-        }
+
+        });
+    }
 }
 

@@ -4,31 +4,29 @@ import { HttpClientModule, HttpClient } from '@angular/common/http';
 // import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
 import { RouterModule } from '@angular/router';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { JsonpModule } from '@angular/http';
 import {MatButtonModule, MatProgressSpinnerModule,
-MatCardModule} from '@angular/material';
+MatCardModule, MatAutocompleteModule, MatInputModule} from '@angular/material';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
 
 import { AppComponent } from './app.component';
 import { appRoute } from './app.routes';
-import { AboutComponent } from './modules/about/about.component';
-import { MoviesComponent } from './modules/movies/movies.component';
-import { MovieComponent } from './modules/movie/movie.component';
+import { AboutComponent } from './movies-home/about/about.component';
+import { MoviesComponent } from './movies-home/movies/movies.component';
+import { MovieComponent } from './movies-home/movie/movie.component';
 import { MoviesService } from './services/movies.service';
 import { CommonLayoutModule } from './common-layout/common-layout.module';
-import { MovieSearchComponent } from './modules/movie-search/movie-search.component';
+import { MovieSearchComponent } from './movies-home/movie-search/movie-search.component';
 import { HttpErrorHandler } from './services/http-error-handler.service';
 import { MessageService } from './services/message.service';
+import { MoviesHomeModule } from './movies-home/movies-home/movies-home.module';
+import { MoviesHomeComponent } from './movies-home/movies-home/movies-home.component';
 
 @NgModule({
   declarations: [
-    AppComponent,
-    MoviesComponent,
-    AboutComponent,
-    MovieComponent,
-    MovieSearchComponent
+    AppComponent
   ],
   imports: [
     BrowserModule,
@@ -41,15 +39,12 @@ import { MessageService } from './services/message.service';
     CommonLayoutModule,
     MatCardModule,
     MatProgressSpinnerModule,
-    BrowserAnimationsModule
-
-  ],
-  exports: [
-    MatCardModule,
-    MatProgressSpinnerModule,
-    BrowserAnimationsModule
-
-  ],
+    BrowserAnimationsModule,
+    MatAutocompleteModule,
+    MatInputModule,
+    ReactiveFormsModule,
+    MoviesHomeModule
+    ],
   providers: [MoviesService,
   HttpErrorHandler,
   MessageService],

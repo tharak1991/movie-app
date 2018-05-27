@@ -14,12 +14,14 @@ export class MoviesService implements OnInit {
   private movieSearchResponse: MoviesSeachModel;
   private apiUrl: string;
   private handleError: HandleError;
+  private search_api_url: string;
 
   constructor(private _httpClient: HttpClient, httpErrorHandler: HttpErrorHandler
   ) {
     this.handleError = httpErrorHandler.createHandleError('HeroesService');
     this.apiUrl = environment.api_url;
     this.apiKey = environment.apiKey;
+    this.search_api_url = environment.search_api_url;
    }
 
   ngOnInit() {
@@ -33,4 +35,13 @@ export class MoviesService implements OnInit {
     );
   }
 
+  public search_word = (term: string) => {
+    return this._httpClient.get(this.apiUrl + 'apikey=' + this.apiKey + '&s=' + 'dark knight').pipe(map(res => {
+        return JSON.parse(res.toString()).map(item => {
+            return item.word;
+        });
+    }));
+  }
 }
+
+

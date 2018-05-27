@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { MoviesComponent } from './modules/movies/movies.component';
+import { MoviesComponent } from './movies-home/movies/movies.component';
 import { MoviesService } from './services/movies.service';
 import { FormsModule } from '@angular/forms';
 import { NgModule } from '@angular/core';
@@ -13,6 +13,5 @@ import { Http, Headers } from '@angular/http';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'app';
-  items = [{ name: "archie" }, { name: "jake" }, { name: "richard" }];
+  title = 'app'; 
 }

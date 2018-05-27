@@ -23,6 +23,7 @@ export class MovieSearchComponent implements OnInit  {
   private moviesResponse: MoviesSeachModel[];
   private isLoading: boolean ;
   private searchWord: string ;
+  private isSearchClicked: boolean;
 
   states: State[] = [
     {
@@ -61,6 +62,7 @@ export class MovieSearchComponent implements OnInit  {
   }
   ngOnInit() {
     this.isLoading = true;
+    this.isSearchClicked = false ;
   }
 
   filterStates(name: string) {
@@ -69,15 +71,7 @@ export class MovieSearchComponent implements OnInit  {
   }
 
   private onSearchClick = (searchWord: string) => {
-    this._movieService.getSearchedMovies(searchWord).
-        subscribe(res => {
-            this.moviesResponse = res;
-            this.isLoading = false ;
-            },
-            err => console.error(err),
-            () => {
-            console.log('done loading movies') ;
-        });
+    this.isSearchClicked = true ;
   }
 
   // getAutoCompleteResults = (searchKey: string) => {

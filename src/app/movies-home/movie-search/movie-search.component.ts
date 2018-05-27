@@ -4,6 +4,7 @@ import {FormControl} from '@angular/forms';
 import {Observable} from 'rxjs';
 import {map, startWith} from 'rxjs/operators';
 import { MoviesService } from './../../services/movies.service';
+import { MoviesSeachModel } from '../../data-models/movie-search.model';
 
 
 export class State {
@@ -15,10 +16,13 @@ export class State {
   templateUrl: './movie-search.component.html',
   styleUrls: ['./movie-search.component.css']
 })
-export class MovieSearchComponent  {
+export class MovieSearchComponent implements OnInit  {
   stateCtrl: FormControl;
   filteredStates: Observable<any[]>;
   autoSearchResults: any;
+  private moviesResponse: MoviesSeachModel[];
+  private isLoading: boolean ;
+  private searchWord: string ;
 
   states: State[] = [
     {
@@ -47,7 +51,7 @@ export class MovieSearchComponent  {
     }
   ];
 
-  constructor() {
+  constructor(private _movieService: MoviesService) {
     this.stateCtrl = new FormControl();
     this.filteredStates = this.stateCtrl.valueChanges
       .pipe(
@@ -55,10 +59,25 @@ export class MovieSearchComponent  {
         map(state => state ? this.filterStates(state) : this.states.slice())
       );
   }
+  ngOnInit() {
+    this.isLoading = true;
+  }
 
   filterStates(name: string) {
     return this.states.filter(state =>
       state.name.toLowerCase().indexOf(name.toLowerCase()) === 0);
+  }
+
+  private onSearchClick = (searchWord: string) => {
+    this._movieService.getSearchedMovies(searchWord).
+        subscribe(res => {
+            this.moviesResponse = res;
+            this.isLoading = false ;
+            },
+            err => console.error(err),
+            () => {
+            console.log('done loading movies') ;
+        });
   }
 
   // getAutoCompleteResults = (searchKey: string) => {

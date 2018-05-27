@@ -1,5 +1,5 @@
 <!--  
 <router-outlet></router-outlet>  -->
-<app-movie-search></app-movie-search>
-<app-movies *ngIf="isSearchClicked"></app-movies>
+<app-movie-search (searchResponseEvent)="receiveSearchResponse($event)"></app-movie-search>
+<app-movies *ngIf="isSearchClicked == true;" [moviesResponse]="movieSearchResults"></app-movies>
 

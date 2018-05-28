@@ -12,6 +12,7 @@ import {
   MatDialog, MatDialogRef, MAT_DIALOG_DATA
 } from '@angular/material';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {WebStorageModule, LocalStorageService} from 'angular-localstorage';
 
 
 import { AppComponent } from './app.component';

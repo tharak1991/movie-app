@@ -13,5 +13,5 @@ import { Http, Headers } from '@angular/http';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'app'; 
+  title = 'app';
 }

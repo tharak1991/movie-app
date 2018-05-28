@@ -8,11 +8,6 @@ import { MoviesHomeComponent } from './movies-home.component';
 
 
 export const moviesRoutes: Routes = [
-
-  { path: '', redirectTo: 'search', pathMatch: 'full' },
-  { path: '**', redirectTo: 'search' },
-  { path: 'search', component: MoviesHomeComponent},
-  { path: 'about', component: AboutComponent },
   { path: 'movie/:id', component: MovieComponent }
 ];
 

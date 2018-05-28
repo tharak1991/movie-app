@@ -29,14 +29,21 @@ export class MoviesService implements OnInit {
    }
 
   public getSearchedMovies = (searchString: string): Observable<MoviesSeachModel[]> => {
-    return this._httpClient.get<MoviesSeachModel[]>( this.apiUrl + 'apikey=' + this.apiKey + '&s=' + 'dark knight')
+    return this._httpClient.get<MoviesSeachModel[]>( this.apiUrl + 'apikey=' + this.apiKey + '&s=' + searchString)
+    .pipe(
+      catchError(this.handleError('getSearchedMovies', []))
+    );
+  }
+
+  public getMovieByID = (imdbID: string): Observable<MoviesSeachModel[]> => {
+    return this._httpClient.get<MoviesSeachModel[]>( this.apiUrl + 'apikey=' + this.apiKey + '&i=' + imdbID)
     .pipe(
       catchError(this.handleError('getSearchedMovies', []))
     );
   }
 
   public search_word = (term: string) => {
-    return this._httpClient.get(this.apiUrl + 'apikey=' + this.apiKey + '&s=' + 'dark knight').pipe(map(res => {
+    return this._httpClient.get(this.apiUrl + 'apikey=' + this.apiKey + '&s=' + term).pipe(map(res => {
         return JSON.parse(res.toString()).map(item => {
             return item.word;
         });

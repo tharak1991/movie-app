@@ -1,1 +1,15 @@
-<p>movie comp</p>
+<mat-card  class="movie-card" (click) = "onMovieClick(movie.imdbID)">
+        <div >
+        <mat-card-header>
+          <div mat-card-avatar class="movie-header-image"></div>
+          <mat-card-title>{{movie.Title}}</mat-card-title>
+          <span>({{movie.Year}})</span>
+          <mat-card-subtitle>Type: {{movie.Type}}</mat-card-subtitle>
+        </mat-card-header>
+        <img mat-card-image [src]="movie.Poster" alt="Photo of movie">
+      </div>
+        <mat-card-actions> 
+          <button mat-button>LIKE</button>
+          <button mat-button>SHARE</button>
+        </mat-card-actions>
+      </mat-card>

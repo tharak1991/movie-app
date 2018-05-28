@@ -28,6 +28,7 @@ export class MoviesComponent implements OnInit {
         this.isLoading = true ;
     }
 
+
     // private searchMovies = (searchString: string) => {
     //     this._movieService.getSearchedMovies(this.searchStr).
     //     subscribe(res => {

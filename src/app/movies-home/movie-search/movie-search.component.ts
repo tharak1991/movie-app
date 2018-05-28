@@ -44,9 +44,6 @@ export class MovieSearchComponent implements OnInit {
   private onSearchClick = (searchWord: string) => {
     this.isSearchClicked = true;
     this.searchMovies(searchWord);
-    if (!this.isLoading) {
-
-    }
   }
 
   private searchMovies = (searchString: string) => {

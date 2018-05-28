@@ -2,6 +2,7 @@ import { Component, OnInit, ViewChild, AfterViewInit, Input } from '@angular/cor
 import { RouterModule, Routes } from '@angular/router';
 import { MovieSearchComponent } from '../movie-search/movie-search.component';
 import { MoviesSeachModel } from '../../data-models/movie-search.model';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
   selector: 'app-movies-home',
@@ -14,17 +15,24 @@ export class MoviesHomeComponent implements OnInit {
   @Input() searchResults: MoviesSeachModel[] ;
   private isSearchClicked: boolean;
   private movieSearchResults: MoviesSeachModel;
+  private isLoading: boolean;
+  private enableSpinner: boolean;
 
-  constructor() { }
+  constructor(private spinner: NgxSpinnerService) { }
 
   ngOnInit() {
     this.isSearchClicked = false;
+    this.spinner.hide();
 
   }
 
   AfterViewInit() {
     this.isSearchClicked = this.movieSearchComponent.isSearchClicked ;
-    console.log(this.movieSearchComponent.isSearchClicked);
+    this.isLoading = this.movieSearchComponent.isLoading ;
+    this.enableSpinner = this.movieSearchComponent.enableSpinner ;
+    if (this.enableSpinner) {
+      this.spinner.show();
+    }
     this.movieSearchResults = this.movieSearchComponent.moviesResponse;
   }
 

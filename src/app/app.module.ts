@@ -12,8 +12,8 @@ import {
   MatDialog, MatDialogRef, MAT_DIALOG_DATA
 } from '@angular/material';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import {WebStorageModule, LocalStorageService} from 'angular-localstorage';
-
+import { StorageServiceModule} from 'angular-webstorage-service';
+import { NgxSpinnerModule } from 'ngx-spinner';
 
 import { AppComponent } from './app.component';
 import { appRoute } from './app.routes';
@@ -37,6 +37,7 @@ import { MovieDetailComponent } from './movies-home/movie-detail/movie-detail.co
   imports: [
     BrowserModule,
     HttpClientModule,
+    NgxSpinnerModule,
     JsonpModule,
     RouterModule,
     appRoute,
@@ -44,7 +45,8 @@ import { MovieDetailComponent } from './movies-home/movie-detail/movie-detail.co
     CommonLayoutModule,
     MatProgressSpinnerModule,
     BrowserAnimationsModule,
-    MoviesHomeModule
+    MoviesHomeModule,
+    StorageServiceModule
   ],
   bootstrap: [AppComponent]
 })

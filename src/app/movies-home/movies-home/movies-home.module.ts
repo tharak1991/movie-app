@@ -15,6 +15,7 @@ import {MatButtonModule, MatProgressSpinnerModule,
   MatCardModule, MatAutocompleteModule, MatInputModule} from '@angular/material';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
+import { NgxSpinnerModule } from 'ngx-spinner';
 
 @NgModule({
   imports: [
@@ -27,7 +28,8 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
     BrowserAnimationsModule,
     MatAutocompleteModule,
     MatInputModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    NgxSpinnerModule
   ],
   declarations: [MoviesHomeComponent,
   AboutComponent,

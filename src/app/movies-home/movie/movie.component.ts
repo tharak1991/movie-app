@@ -1,9 +1,10 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Inject } from '@angular/core';
 import { MoviesService } from '../../services/movies.service';
 import { RouterModule, Router } from '@angular/router';
 import { ActivatedRoute, Params } from '@angular/router';
 import { MovieModel } from '../../data-models/movie.model';
 import { MovieDetailModel } from '../../data-models/movie-detail.model';
+import { WebStorageService, LOCAL_STORAGE } from 'angular-webstorage-service';
 
 @Component({
   selector: 'app-movie',
@@ -16,9 +17,12 @@ export class MovieComponent implements OnInit {
   private movieDetails: MovieDetailModel[];
   private isLoading: boolean;
   private imdbID: string ;
+  private data: string[];
 
   constructor(private activatedRoute: ActivatedRoute,
-  private _movieService: MoviesService, private router: Router) {
+  private _movieService: MoviesService, private router: Router,
+  @Inject(LOCAL_STORAGE) private storage: WebStorageService
+  ) {
 
   }
 
@@ -50,5 +54,22 @@ export class MovieComponent implements OnInit {
           this.isLoading = false;
         });
   }
+
+  private onLikebtnClick = (imdbID: string) => {
+      alert(imdbID);
+
+  }
+
+  saveInLocal(key, val): void {
+    console.log('recieved= key:' + key + 'value:' + val);
+    this.storage.set(key, val);
+    this.data[key] = this.storage.get(key);
+  }
+
+  getFromLocal(key): void {
+    console.log('recieved= key:' + key);
+    this.data[key] = this.storage.get(key);
+    console.log(this.data);
+   }
 
 }

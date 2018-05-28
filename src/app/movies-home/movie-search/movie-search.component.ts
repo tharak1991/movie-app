@@ -18,6 +18,7 @@ export class MovieSearchComponent implements OnInit {
   autoSearchResults: any;
   private moviesResponse: MoviesSeachModel[];
   private isLoading: boolean;
+  private enableSpinner: boolean;
   private searchWord: string;
   private isSearchClicked: boolean;
 
@@ -25,24 +26,16 @@ export class MovieSearchComponent implements OnInit {
 
   constructor(private _movieService: MoviesService) {
     this.movieSearchCtrl = new FormControl();
-    // this.filteredMovies = this.movieSearchCtrl.valueChanges
-    //   .pipe(
-    //     startWith(''),
-    //     map(state => state ? this.filterStates(state) : this.states.slice())
-    //   );
   }
   ngOnInit() {
     this.isLoading = true;
     this.isSearchClicked = false;
+    this.enableSpinner = false;
   }
-
-  // filterStates(name: string) {
-  //   return this.states.filter(state =>
-  //     state.name.toLowerCase().indexOf(name.toLowerCase()) === 0);
-  // }
 
   private onSearchClick = (searchWord: string) => {
     this.isSearchClicked = true;
+    this.enableSpinner = true ;
     this.searchMovies(searchWord);
   }
 
@@ -56,21 +49,10 @@ export class MovieSearchComponent implements OnInit {
           console.log('done loading movies');
           this.isLoading = false;
           this.searchResponseEvent.emit(this.moviesResponse );
+          this.enableSpinner = false;
         });
   }
 
-  // getAutoCompleteResults = (searchKey: string) => {
-  //   this._movieService.search_word(searchKey).
-  //   subscribe(res => {
-  //       this.autoSearchResults = res;
-  //       },
-  //       err => console.error(err),
-  //       () => {
-  //           console.log(this.autoSearchResults) ;
-
-  //   });
-  // }
-}
-
+  }
 
 

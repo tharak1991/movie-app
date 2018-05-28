@@ -2,6 +2,8 @@ import { Component, OnInit, Input } from '@angular/core';
 import { MoviesService } from '../../services/movies.service';
 import { FormsModule } from '@angular/forms';
 import { NgModule } from '@angular/core';
+import {LOCAL_STORAGE, WebStorageService} from 'angular-webstorage-service';
+
 import { MoviesSeachModel } from '../../data-models/movie-search.model';
 
 @Component({
@@ -27,19 +29,5 @@ export class MoviesComponent implements OnInit {
     ngOnInit() {
         this.isLoading = true ;
     }
-
-
-    // private searchMovies = (searchString: string) => {
-    //     this._movieService.getSearchedMovies(this.searchStr).
-    //     subscribe(res => {
-    //         this.moviesResponse = res;
-    //         this.isLoading = false ;
-    //         },
-    //         err => console.error(err),
-    //         () => {
-    //             console.log('done loading movies') ;
-
-    //     });
-    // }
 }
 

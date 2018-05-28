@@ -5,6 +5,7 @@ import { map, switchMap, catchError, mergeMap } from 'rxjs/operators';
 import { MoviesSeachModel } from '../data-models/movie-search.model';
 import { environment } from './../../environments/environment';
 import { HttpErrorHandler, HandleError } from './http-error-handler.service';
+import { MovieDetailModel } from '../data-models/movie-detail.model';
 
 
 @Injectable()
@@ -35,10 +36,10 @@ export class MoviesService implements OnInit {
     );
   }
 
-  public getMovieByID = (imdbID: string): Observable<MoviesSeachModel[]> => {
-    return this._httpClient.get<MoviesSeachModel[]>( this.apiUrl + 'apikey=' + this.apiKey + '&i=' + imdbID)
+  public getMovieByID = (imdbID: string): Observable<MovieDetailModel[]> => {
+    return this._httpClient.get<MovieDetailModel[]>( this.apiUrl + 'apikey=' + this.apiKey + '&i=' + imdbID)
     .pipe(
-      catchError(this.handleError('getSearchedMovies', []))
+      catchError(this.handleError('getMovieByID', []))
     );
   }
 

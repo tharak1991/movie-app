@@ -8,7 +8,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { JsonpModule } from '@angular/http';
 import {
   MatButtonModule, MatProgressSpinnerModule,
-  MatCardModule, MatAutocompleteModule, MatInputModule
+  MatCardModule, MatAutocompleteModule, MatInputModule,
+  MatDialog, MatDialogRef, MAT_DIALOG_DATA
 } from '@angular/material';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
@@ -25,10 +26,12 @@ import { HttpErrorHandler } from './services/http-error-handler.service';
 import { MessageService } from './services/message.service';
 import { MoviesHomeModule } from './movies-home/movies-home/movies-home.module';
 import { MoviesHomeComponent } from './movies-home/movies-home/movies-home.component';
+import { MovieDetailComponent } from './movies-home/movie-detail/movie-detail.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    MovieDetailComponent
   ],
   imports: [
     BrowserModule,

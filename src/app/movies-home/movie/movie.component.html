@@ -1,4 +1,4 @@
-<mat-card  class="movie-card" (click) = "onMovieClick(movie.imdbID)">
+<mat-card  class="movie-card" >
         <div >
         <mat-card-header>
           <div mat-card-avatar class="movie-header-image"></div>
@@ -12,4 +12,5 @@
           <button mat-button>LIKE</button>
           <button mat-button>SHARE</button>
         </mat-card-actions>
-      </mat-card>
+        <a routerLink="/movies/{{ movie.imdbID }}" href="#" class="btn btn-block btn-info">Movie Details</a>
+</mat-card>

@@ -2,9 +2,13 @@ import { Component, OnInit, Input, Inject } from '@angular/core';
 import { MoviesService } from '../../services/movies.service';
 import { RouterModule, Router } from '@angular/router';
 import { ActivatedRoute, Params } from '@angular/router';
+import {MatIconRegistry, MatButton} from '@angular/material';
+import {DomSanitizer} from '@angular/platform-browser';
+import { FormsModule } from '@angular/forms';
+
 import { MovieModel } from '../../data-models/movie.model';
 import { MovieDetailModel } from '../../data-models/movie-detail.model';
-import { WebStorageService, LOCAL_STORAGE } from 'angular-webstorage-service';
+
 
 @Component({
   selector: 'app-movie',
@@ -14,31 +18,36 @@ import { WebStorageService, LOCAL_STORAGE } from 'angular-webstorage-service';
 export class MovieComponent implements OnInit {
 
   @Input() private movie: MovieModel;
+  @Input() private iconColor: string ;
   private movieDetails: MovieDetailModel[];
   private isLoading: boolean;
   private imdbID: string ;
-  private data: string[];
+  private likeIconSrc = './../../../assets/img/like.svg' ;
+  private unLikeIconSrc = './../../../assets/img/unlike.svg';
+  private svgIcon: string ;
+  private storedKeys: string[];
 
   constructor(private activatedRoute: ActivatedRoute,
   private _movieService: MoviesService, private router: Router,
-  @Inject(LOCAL_STORAGE) private storage: WebStorageService
-  ) {
-
-  }
+  iconRegistry: MatIconRegistry, sanitizer: DomSanitizer) {
+    iconRegistry.addSvgIcon(
+      'thumbs-up',
+      sanitizer.bypassSecurityTrustResourceUrl('./../../../assets/img/like.svg'));
+      iconRegistry.addSvgIcon(
+        'thumbs-down',
+        sanitizer.bypassSecurityTrustResourceUrl('./../../../assets/img/unlike.svg'));
+}
 
   ngOnInit() {
+    this.storedKeys = this._movieService.getAllKeys();
+    this.iconColor = 'warn';
+    this.iconColor = this.storedKeys.includes(this.movie.imdbID) ? 'primary' : 'warn' ;
     this.imdbID = this.movie.imdbID ;
-    // this.activatedRoute.params.subscribe((params) => {
-    //   this.imdbID =  params['i'];
-    //   this.isLoading = true ;
-    //   // this._movieService.getMovie(id).subscribe(movie => {
-    //   //   this.movie = movie;
-    //   // });
-    // });
+    this.svgIcon = this.likeIconSrc;
+
   }
 
   private onMovieClick = () => {
-    alert(this.imdbID + 'imdbID');
     this.getMovieByID(this.imdbID);
     this.router.navigate(['movies/' + this.imdbID]);
   }
@@ -56,20 +65,20 @@ export class MovieComponent implements OnInit {
   }
 
   private onLikebtnClick = (imdbID: string) => {
-      alert(imdbID);
-
+      // tslint:disable-next-line:no-debugger
+      debugger;
+      if (this.iconColor === 'warn') {
+         this._movieService.saveInLocal(imdbID, imdbID);
+      } else {
+        this._movieService.removeFromLocal(imdbID);
+      }
+      this.toggleColor(this.iconColor);
   }
 
-  saveInLocal(key, val): void {
-    console.log('recieved= key:' + key + 'value:' + val);
-    this.storage.set(key, val);
-    this.data[key] = this.storage.get(key);
+  private toggleColor = (iconColor: string) => {
+    this.iconColor = iconColor === 'warn' ? 'primary' : 'warn' ;
   }
 
-  getFromLocal(key): void {
-    console.log('recieved= key:' + key);
-    this.data[key] = this.storage.get(key);
-    console.log(this.data);
-   }
+
 
 }

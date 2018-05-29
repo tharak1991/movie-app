@@ -12,7 +12,7 @@ import { MoviesService } from '../../services/movies.service';
 import { HttpErrorHandler } from '../../services/http-error-handler.service';
 import { MessageService } from '../../services/message.service';
 import {MatButtonModule, MatProgressSpinnerModule,
-  MatCardModule, MatAutocompleteModule, MatInputModule} from '@angular/material';
+  MatCardModule, MatAutocompleteModule, MatInputModule, MatIconModule} from '@angular/material';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { NgxSpinnerModule } from 'ngx-spinner';
@@ -29,7 +29,9 @@ import { NgxSpinnerModule } from 'ngx-spinner';
     MatAutocompleteModule,
     MatInputModule,
     ReactiveFormsModule,
-    NgxSpinnerModule
+    NgxSpinnerModule,
+    MatIconModule,
+    MatButtonModule
   ],
   declarations: [MoviesHomeComponent,
   AboutComponent,

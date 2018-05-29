@@ -9,11 +9,12 @@ import { JsonpModule } from '@angular/http';
 import {
   MatButtonModule, MatProgressSpinnerModule,
   MatCardModule, MatAutocompleteModule, MatInputModule,
-  MatDialog, MatDialogRef, MAT_DIALOG_DATA
+  MatDialog, MatDialogRef, MAT_DIALOG_DATA, MatToolbarModule, MatIconModule
 } from '@angular/material';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { StorageServiceModule} from 'angular-webstorage-service';
 import { NgxSpinnerModule } from 'ngx-spinner';
+import { AngularFontAwesomeModule } from 'angular-font-awesome';
 
 import { AppComponent } from './app.component';
 import { appRoute } from './app.routes';
@@ -46,7 +47,13 @@ import { MovieDetailComponent } from './movies-home/movie-detail/movie-detail.co
     MatProgressSpinnerModule,
     BrowserAnimationsModule,
     MoviesHomeModule,
-    StorageServiceModule
+    StorageServiceModule,
+    AngularFontAwesomeModule,
+    MatButtonModule,
+    MatToolbarModule,
+    MatIconModule,
+    MatCardModule,
+    MatButtonModule
   ],
   bootstrap: [AppComponent]
 })

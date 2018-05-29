@@ -57,9 +57,9 @@ export class MoviesService {
     this.data.push(key);
   }
 
-  public getFromLocal = (key): void => {
+  public getFromLocal = (key): string => {
     console.log('recieved= key:' + key);
-    this.data['key'] = this.storage.get(key);
+    return this.storage.get(key);
   }
 
   public removeFromLocal = (key): void => {

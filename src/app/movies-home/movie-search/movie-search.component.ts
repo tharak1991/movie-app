@@ -1,7 +1,7 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { FormControl } from '@angular/forms';
 
-import { Observable } from 'rxjs';
+import { Observable, empty } from 'rxjs';
 import { map, startWith } from 'rxjs/operators';
 import { MoviesService } from './../../services/movies.service';
 import { MoviesSeachModel } from '../../data-models/movie-search.model';
@@ -32,10 +32,16 @@ export class MovieSearchComponent implements OnInit {
     this.isLoading = true;
     this.isSearchClicked = false;
     this.enableSpinner = false;
+    this.searchWord = this._movieService.getFromLocal('lastSearchWord');
+    if (this.searchWord) {
+      this.searchMovies(this.searchWord);
+      this.isSearchClicked = true;
+    }
   }
 
   private onSearchClick = (searchWord: string) => {
     this.isSearchClicked = true;
+    this._movieService.saveInLocal('lastSearchWord', searchWord);
     this.searchMovies(searchWord);
   }
 

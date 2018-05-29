@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { MovieSearchComponent } from '../movie-search/movie-search.component';
 import { MoviesSeachModel } from '../../data-models/movie-search.model';
 import { NgxSpinnerService } from 'ngx-spinner';
+import { MovieDetailComponent } from '../movie-detail/movie-detail.component';
 
 @Component({
   selector: 'app-movies-home',
@@ -12,6 +13,7 @@ import { NgxSpinnerService } from 'ngx-spinner';
 export class MoviesHomeComponent implements OnInit {
 
   @ViewChild(MovieSearchComponent) movieSearchComponent;
+  @ViewChild(MovieDetailComponent) movieDetailComponent;
   @Input() searchResults: MoviesSeachModel[] ;
   private isSearchClicked: boolean;
   private movieSearchResults: MoviesSeachModel;

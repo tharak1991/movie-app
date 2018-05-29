@@ -24,6 +24,7 @@ export class MovieDetailComponent implements OnInit {
   private svgIcon: string ;
   private storedKeys: string[]; // local storage liked movies
 
+
   constructor(private router: ActivatedRoute,
     private _movieService: MoviesService,
     iconRegistry: MatIconRegistry, sanitizer: DomSanitizer,

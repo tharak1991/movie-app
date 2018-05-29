@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { MoviesComponent } from './movies-home/movies/movies.component';
 import { MoviesService } from './services/movies.service';
 import { FormsModule } from '@angular/forms';
@@ -12,6 +12,13 @@ import { Http, Headers } from '@angular/http';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
   title = 'app';
+
+  constructor(private _movieService: MoviesService) {
+  }
+
+  ngOnInit() {
+    this._movieService.removeFromLocal('lastSearchWord');
+  }
 }

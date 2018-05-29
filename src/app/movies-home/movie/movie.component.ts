@@ -19,13 +19,14 @@ export class MovieComponent implements OnInit {
 
   @Input() private movie: MovieModel;
   @Input() private iconColor: string ;
+
   private movieDetails: MovieDetailModel[];
   private isLoading: boolean;
   private imdbID: string ;
   private likeIconSrc = './../../../assets/img/like.svg' ;
   private unLikeIconSrc = './../../../assets/img/unlike.svg';
   private svgIcon: string ;
-  private storedKeys: string[];
+  private storedKeys: string[]; // existing liked movies in local storage
 
   constructor(private activatedRoute: ActivatedRoute,
   private _movieService: MoviesService, private router: Router,
@@ -39,12 +40,11 @@ export class MovieComponent implements OnInit {
 }
 
   ngOnInit() {
-    this.storedKeys = this._movieService.getAllKeys();
+    this.storedKeys = this._movieService.getAllKeys(); // get all liked movies array
     this.iconColor = 'warn';
     this.iconColor = this.storedKeys.includes(this.movie.imdbID) ? 'primary' : 'warn' ;
     this.imdbID = this.movie.imdbID ;
     this.svgIcon = this.likeIconSrc;
-
   }
 
   private onMovieClick = () => {
@@ -65,14 +65,12 @@ export class MovieComponent implements OnInit {
   }
 
   private onLikebtnClick = (imdbID: string) => {
-      // tslint:disable-next-line:no-debugger
-      debugger;
-      if (this.iconColor === 'warn') {
+      if (this.iconColor === 'warn') { // save to local storage during like
          this._movieService.saveInLocal(imdbID, imdbID);
-      } else {
+      } else { // remove from local storage during unlike
         this._movieService.removeFromLocal(imdbID);
       }
-      this.toggleColor(this.iconColor);
+      this.toggleColor(this.iconColor); // change like/unlike button color
   }
 
   private toggleColor = (iconColor: string) => {

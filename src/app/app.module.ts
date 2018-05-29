@@ -1,18 +1,23 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpClientModule, HttpClient } from '@angular/common/http';
-// import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
-import { Ng2SearchPipeModule } from 'ng2-search-filter';
 import { RouterModule } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { JsonpModule } from '@angular/http';
 import {
-  MatButtonModule, MatProgressSpinnerModule,
-  MatCardModule, MatAutocompleteModule, MatInputModule,
-  MatDialog, MatDialogRef, MAT_DIALOG_DATA, MatToolbarModule, MatIconModule
+  MatButtonModule,
+  MatProgressSpinnerModule,
+  MatCardModule,
+  MatAutocompleteModule,
+  MatInputModule,
+  MatDialog,
+  MatDialogRef,
+  MAT_DIALOG_DATA,
+  MatToolbarModule,
+  MatIconModule
 } from '@angular/material';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { StorageServiceModule} from 'angular-webstorage-service';
+import { StorageServiceModule } from 'angular-webstorage-service';
 import { NgxSpinnerModule } from 'ngx-spinner';
 import { AngularFontAwesomeModule } from 'angular-font-awesome';
 
@@ -31,10 +36,7 @@ import { MoviesHomeComponent } from './movies-home/movies-home/movies-home.compo
 import { MovieDetailComponent } from './movies-home/movie-detail/movie-detail.component';
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    MovieDetailComponent
-  ],
+  declarations: [AppComponent, MovieDetailComponent],
   imports: [
     BrowserModule,
     HttpClientModule,
@@ -42,7 +44,6 @@ import { MovieDetailComponent } from './movies-home/movie-detail/movie-detail.co
     JsonpModule,
     RouterModule,
     appRoute,
-    Ng2SearchPipeModule,
     CommonLayoutModule,
     MatProgressSpinnerModule,
     BrowserAnimationsModule,
@@ -57,4 +58,4 @@ import { MovieDetailComponent } from './movies-home/movie-detail/movie-detail.co
   ],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {}

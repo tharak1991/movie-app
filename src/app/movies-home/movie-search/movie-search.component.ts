@@ -13,9 +13,10 @@ import { MoviesSeachModel } from '../../data-models/movie-search.model';
   styleUrls: ['./movie-search.component.css']
 })
 export class MovieSearchComponent implements OnInit {
+
   movieSearchCtrl: FormControl;
   filteredMovies: Observable<any[]>;
-  autoSearchResults: any;
+  autoSearchResults: any; // future dev task: auto load of movies while typing
   private moviesResponse: MoviesSeachModel[];
   private isLoading: boolean;
   private enableSpinner: boolean;
@@ -35,10 +36,10 @@ export class MovieSearchComponent implements OnInit {
 
   private onSearchClick = (searchWord: string) => {
     this.isSearchClicked = true;
-    this.enableSpinner = true ;
     this.searchMovies(searchWord);
   }
 
+  // search movies
   private searchMovies = (searchString: string) => {
     this._movieService.getSearchedMovies(searchString).
       subscribe(res => {

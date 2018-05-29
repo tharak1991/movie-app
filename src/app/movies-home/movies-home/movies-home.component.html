@@ -1,5 +1,4 @@
-<!--  
-<router-outlet></router-outlet>  -->
+
 <app-movie-search (searchResponseEvent)="receiveSearchResponse($event)"></app-movie-search>
 <app-movies *ngIf="isSearchClicked == true;" [moviesResponse]="movieSearchResults"></app-movies>
 <ngx-spinner></ngx-spinner>

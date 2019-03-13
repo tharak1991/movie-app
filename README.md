@@ -1,4 +1,4 @@
-# MovieApp
+# MovieApp (Angular 6)
 
 A sample web application done using Angular 6.
 

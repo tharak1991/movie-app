@@ -1,5 +1,9 @@
 # MovieApp
 
+A sample web application done using Angular 6.
+
+It displays the list of movies ,add ,edit etc and make use of imdb API's .
+
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 6.0.3.
 
 ## Development server
